@@ -25,6 +25,7 @@ async function headerClick(element) {
     await slidUp(about);
     copied.hide();
     writing = false;
+    $('#manicule').remove();
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     element.slideDown();
 }
@@ -41,9 +42,11 @@ const canvas = $('canvas')[0];
 const ctx = canvas.getContext("2d");
 canvas.width = window.innerWidth * window.devicePixelRatio;
 canvas.height = window.innerHeight * window.devicePixelRatio;
+
 const text = [
+    'Hi.',
     'My name is Ben Kalish.',
-    'I like to code.',
+    'I like to code. // a lot',
     'Click above to see some of my projects...',
     'how to reach me...',
     'and some info about myself.',
@@ -53,88 +56,50 @@ const text = [
 
 let textIndex = 0;
 let charIndex = 0;
-/* let x = 0;
-let y = canvas.height / 2;
-*/
-
 
 ctx.font = `${1.5 * canvas.width / maxStringLength(text)}px 'Courier New', Courier, monospace`;
 ctx.fillStyle = 'white';
 
-
-// const interval = setInterval(() => {
-/*  if(text.length > index){
-     ctx.fillText(text.slice(0, index + 1), 10, canvas.height / 2);
-     index++;
- }
- else{
-     clearInterval(interval);
- } */
-// let bool = true;
-let char = '\u25AE';
-/*  const foo = setInterval(()=>{
-    if(bool){
-        char = '\u25AE';
-    }
-    else{
-        char = '';
-    }
-    bool = !bool;
- }, 30); */
-
 let writing = true;
 (async function () {
     while (writing) {
-        if (textIndex < text.length) {
-            if (text[textIndex].length > charIndex) {
-                /* if (bool) {
-                    char = '\u25AE';
-                }
-                else {
-                    char = '';
-                }
-                if (charIndex % 3) {
-                    bool = !bool;
-                } */
-                ctx.fillText(`${text[textIndex].slice(0, charIndex + 1)}${char}`, 10, canvas.height / 3);
-                charIndex++;
-
-                await pause(125);
-                if (charIndex !== text[textIndex].length) {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                }
-
+        // if (textIndex < text.length) {
+        if (text[textIndex].length > charIndex) {
+            if (textIndex >= 3 && textIndex <= 6) {
+                $(`header > button:nth-of-type(${textIndex - 2}), header > a button:nth-of-type(${7 - textIndex})`)
+                    .addClass('hover');
+                $(`header span:nth-of-type(${textIndex - 2})`).text('\u261D');
             }
-            else {
-                textIndex++;
-                charIndex = 0;
-                await pause(2000);
-                if (textIndex !== text.length) {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                }
+            ctx.fillText(`${text[textIndex].slice(0, charIndex + 1)}\u25AE`, 10, canvas.height / 4);
+            charIndex++;
+            await pause(100);
+            if (charIndex !== text[textIndex].length) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
         }
         else {
-            writing = false;
-            // clearInterval(foo);
+            charIndex = 0;
+            await pause(2000);
+
+            if (textIndex >= 3 && textIndex <= 6) {
+                $(`header > button:nth-of-type(${textIndex - 2}), header > a button:nth-of-type(${7 - textIndex})`)
+                    .removeClass('hover');
+                $(`header span:nth-of-type(${textIndex - 2})`).text('');
+            }
+            textIndex++;
+            // if (textIndex !== text.length) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // }
+        }
+        // }
+        /* else {
+            textIndex = 0;
+        } */
+        if (textIndex === text.length) {
+            textIndex = 0;
         }
     }
 })();
-
-// }, 500);
-
-/* let blink = true;
-const cursor = setInterval(() => {
-        if(blink){
-        ctx.fillRect(x, y, canvas.width / text.length, 1.5 * canvas.width / text.length);
-        
-        }
-        else{
-            ctx.clearRect(x, y, canvas.width / text.length + 1, 1.5 * canvas.width / text.length + 1);
-        }
-        blink = !blink;
-}, 500);
- */
 
 function pause(interval) {
     return new Promise(resolve => setTimeout(resolve, interval));

@@ -20,16 +20,24 @@ button {
     font-family: 'Courier New', Courier, monospace;
 }
 
+header span, button {
+    width: 6em;
+    padding: 1px 4px;
+}
+
+header span {
+    font-size: 100px;
+    text-align: center;
+}
+
 button {
     border: none;
     font-size: 1.5em;
     font-weight: 500;
-    width: 6em;
     cursor: pointer;
 }
 
-button:hover {
-    /* font-size: 1.75em; */
+.hover, button:hover {
     font-weight: 900;
 }
 
