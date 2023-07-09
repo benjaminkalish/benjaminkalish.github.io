@@ -132,3 +132,7 @@ li span {
     font-style: italic;
     font-weight: 300;
 } 
+
+.content p {
+    text-indent: 2em;
+}
