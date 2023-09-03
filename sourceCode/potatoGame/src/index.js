@@ -54,14 +54,14 @@ let open;
 $('#parts').click(() => {
     if (open) {
         $('#selectors').animate({
-            marginLeft: ['-=750px', 'swing']
+            marginLeft: ['-=755px', 'swing']
         });
         open = !open;
         $('.unused').hide();
     }
     else {
         $('#selectors').animate({
-            marginLeft: ['+=750px', 'swing']
+            marginLeft: ['+=755px', 'swing']
         });
         open = !open;
     }
