@@ -101,7 +101,7 @@ function App() {
             <Weather coords={state.coords} />
             <Bird coords={state.coords} setBirdCoords={setBirdCoords} />
           </div>
-          <Map coords={state.coords} birdCoords={state.birdCoords}></Map>
+          {state.birdCoords !== undefined && <Map coords={state.coords} birdCoords={state.birdCoords}></Map>}
         </main>
       }
     </>
