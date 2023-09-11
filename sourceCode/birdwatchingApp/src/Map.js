@@ -60,6 +60,7 @@ export default function Map({ coords, birdCoords }) {
     if (g.current && m.current && coords && birdCoords) {
       const google = g.current;
       const map = m.current;
+      homeMarker.current.setMap(null);
       setMarkers(google, map);
     }
     return (() => {
