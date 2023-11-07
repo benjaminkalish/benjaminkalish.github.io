@@ -17,9 +17,10 @@ const router = createBrowserRouter(createRoutesFromElements(
       </main>
     </>
   } >
-    <Route index element={<BlogList />} />
-    <Route path='/postlist/:id' element={<PostList />} loader={({ params }) => fido(`${blogUrl('users')}?id=${params.id}`, (data) => { return data[0] })} errorElement={<ErrorComponent />} />
-    <Route path="*" element={<Navigate to="/" replace="true" />} />
+    <Route index element={<Navigate to="/blogsite" />} />
+    <Route path='/blogsite' element={<BlogList />} />
+    <Route path='/blogsite/postlist/:id' element={<PostList />} loader={({ params }) => fido(`${blogUrl('users')}?id=${params.id}`, (data) => { return data[0] })} errorElement={<ErrorComponent />} />
+    <Route path="*" element={<Navigate to="/blogsite" replace="true" />} />
   </Route>
 ));
 

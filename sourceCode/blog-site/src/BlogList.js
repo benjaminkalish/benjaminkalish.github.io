@@ -22,7 +22,7 @@ export default function BlogList() {
 
         function blogSelector(e, id) {
             if (e.target.tagName !== 'A') {
-                navigate(`/postlist/${id}`);
+                navigate(`/blogsite/postlist/${id}`);
             }
         }
 
