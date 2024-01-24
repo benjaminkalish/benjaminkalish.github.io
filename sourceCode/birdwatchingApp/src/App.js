@@ -14,7 +14,7 @@ function App() {
     err: false,
     isLoading: false,
     forceRender: 0,
-    birdCoords: null
+    birdCoords: undefined
   });
 
   useEffect(() => {
